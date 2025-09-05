@@ -1,0 +1,26 @@
+name: Terraform Import Resource Group
+
+on:
+  workflow_dispatch:
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Import Resource Group
+        run: terraform import azurerm_resource_group.main /subscriptions/e2319e43-65ad-4093-b6f4-5613ea2cba63/resourceGroups/terraform-lab-rg
