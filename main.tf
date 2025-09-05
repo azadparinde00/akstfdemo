@@ -35,6 +35,3 @@ terraform {
        subnet_id           = module.vnet.subnet_id
        acr_login_server    = module.acr.acr_login_server
      }
-
-
-// done 
